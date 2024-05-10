@@ -36,7 +36,8 @@ ROUTES - CLIENT
 | home page         | `/`                     | 
 | all bar page      |` /bars `                | 
 | bar detail        | `/bar/:barId `          | 
-| add new bar       | `/new-bar `             | 
-| all comments      | `/all-comments`         | 
-| add comments      | `/new-comment`          | 
-| about us          | `/about-us`             | 
+| add new bar       | `/nuevo-bar `           | 
+| all comments      | `/todos-los-comentarios`| 
+| add comments      | `/nuevo-comentario`     | 
+| edit comment page | `/editar-comentario`    |
+| about us          | `/sobre-nosotros`       | 
