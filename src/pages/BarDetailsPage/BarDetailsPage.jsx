@@ -1,10 +1,12 @@
+import { Container } from "react-bootstrap"
+
 const BarDetailsPage = () => {
 
 
     return (
-
-        <h1>hiiii barDetail pageeee</h1>
-
+        <Container>
+            <h1>Detalles de Bar</h1>
+        </Container>
     )
 
 }
