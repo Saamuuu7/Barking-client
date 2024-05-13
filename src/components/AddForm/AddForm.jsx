@@ -4,7 +4,7 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const apiUrl = 'http://localhost:5000'
+const apiUrl = 'http://localhost:5005'
 
 
 const AddForm = () => {
