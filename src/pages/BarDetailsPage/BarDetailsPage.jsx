@@ -6,7 +6,8 @@ const apiUrl = 'http://localhost:5005'
 
 
 const BarDetailsPage = () => {
-    const [bar, setBar] = useState([])
+
+    const [bar, setBar] = useState({})
 
     const navigate = useNavigate()
 
