@@ -19,8 +19,7 @@ const CarrSlider = ({ gallery, title }) => {
                                     <Carousel.Item key={index}>
                                         <Image src={image} alt={`Imagen ${index + 1} de ${title}`} fluid />
                                         <Carousel.Caption>
-                                            <h3>{`${title} - Imagen ${index + 1}`}</h3>
-                                            <p>{`Descripción de la imagen ${index + 1}`}</p>
+                                            <h3>{`${title}`}</h3>
                                         </Carousel.Caption>
                                     </Carousel.Item>
                                 ))}
