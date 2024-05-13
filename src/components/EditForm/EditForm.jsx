@@ -1,8 +1,12 @@
+import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
-const apiUrl = 'http://localhost:5000'
+import { useState, useEffect } from "react"
+import { Container, Row, Col, Form, Button } from "react-bootstrap"
+import InputGroup from 'react-bootstrap/InputGroup';
+
+const apiUrl = 'http://localhost:5005'
 
 const EditForm = () => {
-
 
     const [editBar, setEditBar] = useState({
         title: '',
@@ -25,53 +29,91 @@ const EditForm = () => {
     })
 
     const { barId } = useParams()
-
     const navigate = useNavigate()
 
     useEffect(() => {
-        FormedForm()
+        fetchFormData()
     }, [])
 
-    const FormedForm = () => {
+    const fetchFormData = () => {
         axios
-            .get(`${apiUrl}/bar/editar-bar/${barId}`)
+            .get(`${apiUrl}/bars/${barId}`)                      //get data
             .then(({ data }) => setEditBar(data))
             .catch((err) => console.log(err))
     }
+
+
+    const handleInputChange = e => {
+        const { name, value, checked, type } = e.target
+        const newValue = type === 'checkbox' ? checked : value;
+        setEditBar({ ...editBar, [name]: newValue });
+    }
+
     const handleFormSubmit = e => {
         e.preventDefault()
 
         axios
-            .put(`${apiUrl}/bar/editar-bar/${barId}`, editBar)
-            .then(() => navigate(`/projects/${projectId}`))
+            .put(`${apiUrl}/bars/${barId}`, editBar)                 //put data
+            .then(() => navigate(`/bars/${barId}`))
             .catch(err => console.log(err))
+    }
+
+    const addImageField = () => {
+        const galleryCopy = [...editBar.gallery]
+        galleryCopy.push('')
+        setEditBar({ ...editBar, gallery: galleryCopy })
+    }
+
+    const handleGalleryChange = (e, index) => {
+        const { value } = e.target
+        const galleryCopy = [...editBar.gallery]
+        galleryCopy[index] = value
+        setEditBar({ ...editBar, gallery: galleryCopy })
+    }
+
+    const handleContactChange = e => {
+        const { name, value } = e.target
+        setEditBar({
+            ...editBar, contact: {
+                ...editBar.contact, [name]: value
+            }
+        })
+    }
+
+    const handleAddressChange = e => {
+        const { name, value } = e.target
+        setEditBar({
+            ...editBar, address: {
+                ...editBar.address, [name]: value
+            }
+        })
+    }
+
+    const handleCancel = () => {
+        window.location.replace('');
     }
 
     return (
         <div className="AddBarPage mt-3">
             <Container>
-                <h1 className="text-center" style={{ marginBottom: '20px' }}>TU BAR EN  ¡¡ BARKING ©️!! </h1>
+                <h1 className="text-center" style={{ marginBottom: '20px' }}>TU BAR EN ¡¡ BARKING ©️!! </h1>
                 <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 10)' }} />
-
                 <Row>
                     <Col md={{ span: 6, offset: 3 }} >
-
-                        <Form onSubmit={handleForSubmit} >
-
-
+                        <Form onSubmit={handleFormSubmit} >
                             <Form.Group className="mb-3" controlId="title">
-                                <Form.Label>Nombre del Bar * </Form.Label>
+                                <Form.Label>Nombre del Bar *</Form.Label>
                                 <InputGroup hasValidation>
                                     <Form.Control
                                         type='text'
                                         placeholder="Introduce el nombre del Bar"
                                         name="title"
-                                        value={newBar.title}
+                                        value={editBar.title}
                                         onChange={handleInputChange}
                                         required
                                     />
                                     <Form.Control.Feedback type="invalid">
-                                        Por favor,rellene con el nombre del Bar que desea añadir.
+                                        Por favor, rellene con el nombre del Bar que desea añadir.
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
@@ -83,7 +125,7 @@ const EditForm = () => {
                                     type="text"
                                     placeholder="Introduce una breve descripción"
                                     name="description"
-                                    value={newBar.description}
+                                    value={editBar.description}
                                     onChange={handleInputChange}
                                 />
                             </Form.Group>
@@ -93,8 +135,8 @@ const EditForm = () => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Entre 00€ - 00€"
-                                    name="AveragePrice"
-                                    value={newBar.address.average_price}
+                                    name="average_price"
+                                    value={editBar.average_price}
                                     onChange={handleInputChange}
                                     required
                                 />
@@ -109,7 +151,7 @@ const EditForm = () => {
                                     type="number"
                                     placeholder="Introduzca un número entre el 1 y el 5"
                                     name="rating"
-                                    value={newBar.rating}
+                                    value={editBar.rating}
                                     onChange={handleInputChange}
                                     required
                                 />
@@ -124,7 +166,7 @@ const EditForm = () => {
                                     type="text"
                                     placeholder="horarios de apertura 00:00 - 00:00"
                                     name="opening_hours"
-                                    value={newBar.opening_hours}
+                                    value={editBar.opening_hours}
                                     onChange={handleInputChange}
                                     required
                                 />
@@ -137,7 +179,7 @@ const EditForm = () => {
                             <Form.Group className="mb-3" controlId="Gallery" >
                                 <Form.Label>Añade fotos</Form.Label>
                                 {
-                                    newBar.gallery.map((eachField, idx) => {
+                                    editBar.gallery.map((eachField, idx) => {
                                         return (
                                             <Form.Control
                                                 key={idx}
@@ -152,7 +194,7 @@ const EditForm = () => {
                                 }
                             </Form.Group>
 
-                            <Button className="w-100" variant="secondary" onClick={addImageFild}>Añadir nueva foto</Button>
+                            <Button className="w-100" variant="secondary" onClick={addImageField}>Añadir nueva foto</Button>
 
                             {/* -------------------------------- */}
 
@@ -161,7 +203,7 @@ const EditForm = () => {
                                     type="checkbox"
                                     label="Habilitado para Discapacitados"
                                     name="handicapped"
-                                    value={newBar.handicapped}
+                                    value={editBar.handicapped}
                                     onChange={handleInputChange}
                                 />
                             </Form.Group>
@@ -174,7 +216,7 @@ const EditForm = () => {
                                         type='text'
                                         placeholder="Introduzca el teléfono de contacto"
                                         name="phone_number"
-                                        value={newBar.contact.phone_number}
+                                        value={editBar.contact.phone_number}
                                         onChange={handleContactChange}
                                         required
                                     />
@@ -192,7 +234,7 @@ const EditForm = () => {
                                         type='text'
                                         placeholder="Introduzca el email de contacto"
                                         name="email"
-                                        value={newBar.contact.email}
+                                        value={editBar.contact.email}
                                         onChange={handleContactChange}
                                         required
                                     />
@@ -208,7 +250,7 @@ const EditForm = () => {
                                     type="number"
                                     placeholder="Introduce el aforo máximo del Bar"
                                     name="capacity"
-                                    value={newBar.capacity}
+                                    value={editBar.capacity}
                                     onChange={handleInputChange}
                                 />
                             </Form.Group>
@@ -225,8 +267,8 @@ const EditForm = () => {
                                                 type="text"
                                                 placeholder="Calle"
                                                 name="text"
-                                                value={newBar.address.text}
-                                                onChange={handleAdressChange}
+                                                value={editBar.address.text}
+                                                onChange={handleAddressChange}
                                                 required
                                             />
                                             <Form.Control.Feedback type="invalid">
@@ -243,8 +285,8 @@ const EditForm = () => {
                                             type="number"
                                             placeholder="Latitud"
                                             name="latitude"
-                                            value={newBar.address.latitude}
-                                            onChange={handleAdressChange}
+                                            value={editBar.address.latitude}
+                                            onChange={handleAddressChange}
                                             required
                                         />
                                         <Form.Control.Feedback type="invalid">
@@ -261,8 +303,8 @@ const EditForm = () => {
                                                 type="number"
                                                 placeholder="Longuitud"
                                                 name="longitude"
-                                                value={newBar.address.longitude}
-                                                onChange={handleAdressChange}
+                                                value={editBar.address.longitude}
+                                                onChange={handleAddressChange}
                                                 required
                                             />
                                             <Form.Control.Feedback type="invalid">
@@ -277,8 +319,8 @@ const EditForm = () => {
                             <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                                 Guardar
                             </Button>
-                            <Button variant="secondary" type="cancel" className="w-100" style={{ marginTop: '20px' }}>
-                                Cancelar Envio
+                            <Button variant="secondary" onClick={handleCancel} className="w-100" style={{ marginTop: '20px' }}>
+                                Cancelar Envío
                             </Button>
 
                         </Form>

@@ -4,10 +4,10 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import BarCard from "../../components/BarCard/BarCard";
 import { Link } from "react-router-dom";
+const apiUrl = 'http://localhost:5005'
 
 const AllBarsPage = () => {
 
-    const apiUrl = 'http://localhost:5005'
 
     const [bars, setBars] = useState([])
 
@@ -35,9 +35,9 @@ const AllBarsPage = () => {
             <Row>
                 {bars.map(eachBar => (
                     <div key={eachBar.id}>
-                        <Link to={`/bar/${eachBar.id}`} style={{ textDecoration: 'none' }}>
-                            <BarCard {...eachBar} />
-                        </Link>
+
+                        <BarCard {...eachBar} />
+
                     </div>
                 ))}
             </Row>
