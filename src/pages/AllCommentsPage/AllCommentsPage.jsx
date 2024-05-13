@@ -26,11 +26,11 @@ const AllCommentsPage = () => {
                 {
                     comments.map(eachComment => {
                         return (
-                            < Card style={{ marginTop: '20px', marginBottom: '20px', width: '900px', boxShadow: '0 8px 6px rgba(1, 1, 1, 1)' }}>
-                                <Card.Body style={{ backgroundColor: '#F5F5DC' }}>
-                                    < CommentCard key={eachComment.id} {...eachComment} />
-                                </Card.Body>
-                            </Card >
+                            // < Card style={{ marginTop: '20px', marginBottom: '20px', width: '900px', boxShadow: '0 8px 6px rgba(1, 1, 1, 1)' }}>
+                            // <Card.Body style={{ backgroundColor: '#F5F5DC' }}>
+                            < CommentCard key={eachComment.id} {...eachComment} />
+                            /* </Card.Body> */
+                            // </Card >
                         )
                     })
                 }

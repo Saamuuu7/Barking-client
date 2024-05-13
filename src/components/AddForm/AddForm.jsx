@@ -72,6 +72,8 @@ const AddForm = () => {
     }
 
 
+
+
     const addImageFild = () => {
         const galleryCopy = [...newBar.gallery]
         galleryCopy.push('')
@@ -85,6 +87,18 @@ const AddForm = () => {
         galleryCopy[index] = value
 
         setNewBar({ ...newBar, gallery: galleryCopy })
+    }
+
+
+
+
+
+
+
+
+
+    const handleCancel = () => {
+        window.location.replace('');
     }
 
 
@@ -319,7 +333,7 @@ const AddForm = () => {
                             <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                                 Guardar
                             </Button>
-                            <Button variant="secondary" type="cancel" className="w-100" style={{ marginTop: '20px' }}>
+                            <Button variant="secondary" type="cancel" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
                                 Cancelar Envio
                             </Button>
 
