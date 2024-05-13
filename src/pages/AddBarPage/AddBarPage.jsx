@@ -1,17 +1,30 @@
-import { Container, Card } from "react-bootstrap"
-import AddForm from "../../components/AddForm/AddForm"
+import { Container, Row, Col } from "react-bootstrap"
+import AddBarForm from "../../components/AddBarForm/AddBarForm"
+
 
 const AddBarPage = () => {
 
     return (
-        <Container className="d-flex justify-content-center align-items-center">
+        <div className="AddBarPage mt-3">
 
-            <Card style={{ marginTop: '20px', marginBottom: '20px', width: '1400px', boxShadow: '0 8px 6px rgba(1, 1, 1, 1)' }}>
-                <Card.Body style={{ backgroundColor: '#F5F5DC' }}>
-                    <AddForm />
-                </Card.Body>
-            </Card>
-        </Container>
+            <Container>
+
+                <h1 className="text-center">TU BAR EN  ¡¡ BARKING ©️!! </h1>
+                <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 10)' }} />
+
+                <Row>
+                    <Col
+                        md={{ span: 6, offset: 3 }}
+                        style={{}}
+                        className="mt-5 mb-5"
+                    >
+                        <AddBarForm />
+                    </Col>
+                </Row>
+
+            </Container>
+
+        </div >
     );
 }
 export default AddBarPage
