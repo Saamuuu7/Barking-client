@@ -9,7 +9,9 @@ import AllCommentsPage from './pages/AllCommentsPage/AllCommentsPage'
 import AddCommentPage from './pages/AddCommentPage/AddCommentPage'
 import EditCommentPage from './pages/EditCommentPage/EditCommentPage'
 import AboutUsPage from './pages/AboutUsPage/AboutUsPage'
-import AllBarPage from './pages/AllBarsPage/AllBarPage'
+import AllBarsPage from './pages/AllBarsPage/AllBarsPage'
+
+
 
 
 function App() {
@@ -23,7 +25,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<HomePage />} />
-        <Route path="/bars" element={<AllBarPage />} />
+        <Route path="/bars" element={<AllBarsPage />} />
         <Route path="/bar/:barId" element={<BarDetailsPage />} />
         <Route path="bar/nuevo-bar" element={<AddBarPage />} />
         <Route path="/todos-los-comentarios" element={<AllCommentsPage />} />
@@ -37,4 +39,6 @@ function App() {
   )
 }
 
-export default App
+export default App;
+
+
