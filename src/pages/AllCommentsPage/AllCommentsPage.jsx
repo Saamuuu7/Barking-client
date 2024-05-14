@@ -25,7 +25,7 @@ const AllCommentsPage = () => {
         <div className="AllCommentsPage">
 
             <Container>
-                <h1 className="mt-5">Cometarios</h1>
+                <h1 className="mt-5">Comentarios</h1>
                 <hr />
                 <CommentsList />
             </Container>

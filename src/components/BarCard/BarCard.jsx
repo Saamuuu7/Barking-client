@@ -13,8 +13,8 @@ const BarCard = ({ id, title, description, average_price, address, rating, openi
                 <Link to={`/bar/${id}`}>
                     <CarrSlider gallery={gallery} title={title} />
                 </Link>
-                <Card.Title className="text-center">{title}</Card.Title>
-                <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 10)' }} />
+                {/* <Card.Title className="text-center">{title}</Card.Title> */}
+                {/* <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 10)' }} /> */}
                 <Card.Subtitle>{description}</Card.Subtitle>
                 <br></br>
                 <Card.Text>📍 {address.text}</Card.Text>

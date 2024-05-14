@@ -4,7 +4,12 @@ const HomePage = () => {
 
     return (
         <Container>
-            <h1>Página Principal</h1>
+            <h1>Página Principalllllllll</h1>
+
+
+
+
+
         </Container>
     )
 
