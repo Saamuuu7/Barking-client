@@ -54,7 +54,7 @@ const EditForm = () => {
 
         axios
             .put(`${apiUrl}/bars/${barId}`, editBar)                 //put data
-            .then(() => navigate(`/bars/${barId}`))
+            .then(() => navigate(`/bar/${barId}`))
             .catch(err => console.log(err))
     }
 

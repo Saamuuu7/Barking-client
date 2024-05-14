@@ -1,5 +1,4 @@
-import { Container, Card } from "react-bootstrap"
-import CommentCard from "../../components/CommentCard/CommentCard"
+import CommentCard from "../CommentCard/CommentCard"
 import { useEffect, useState } from "react"
 import axios from "axios"
 const apiUrl = 'http://localhost:5005'
@@ -10,6 +9,7 @@ const CommentsList = () => {
 
     useEffect(() => {
         getAllcomments()
+        getBarInfo()
     }, [])
 
     const getAllcomments = () => {
@@ -17,6 +17,13 @@ const CommentsList = () => {
             .get(`${apiUrl}/comments`)
             .then(({ data }) => setComments(data))
             .catch((err) => console.log(err))
+    }
+    const getBarInfo = barId => {
+        axios
+            .get(`${apiUrl}/bars/${barId}`)
+            .then(({ data }) => setComments(data))
+            .catch((err) => console.log(err))
+
     }
 
     return (
