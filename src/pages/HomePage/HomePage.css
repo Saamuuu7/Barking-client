@@ -1,0 +1,13 @@
+.full-page-container {
+
+    padding: 0% !important;
+    background-size: cover !important;
+    height: 100vh !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+
+
+}

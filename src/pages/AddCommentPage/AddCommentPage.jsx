@@ -1,10 +1,9 @@
 import { Container } from "react-bootstrap"
+import AddCommentForm from "../../components/AddCommentForm/AddCommentForm"
 const AddCommentsPage = () => {
 
     return (
-        <Container>
-            <h1>AddCommentsPage</h1>
-        </Container>
+        <AddCommentForm />
     )
 
 

@@ -7,7 +7,7 @@ const Navigation = () => {
     return (
         <div className="Navigation">
 
-            <Navbar expand="" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
+            <Navbar expand="" className="bg-body-tertiary" bg="transparent" >
                 <Container>
                     <Link to='/' style={{ textDecoration: 'none' }}>
                         <Navbar.Brand>Barking</Navbar.Brand>

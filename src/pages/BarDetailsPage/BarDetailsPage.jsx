@@ -71,6 +71,13 @@ const BarDetailsPage = () => {
                 }}>
                     Editar
                 </Button>
+
+
+                <Button className="mt-5" variant="secondary" size="sm" onClick={() => {
+                    navigate(`/bar/nuevo-comentario/${barId}`);
+                }}>
+                    Añadir comentario
+                </Button>
             </Container>
         </>
     )
