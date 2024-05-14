@@ -1,4 +1,5 @@
 import { Col, Row, Carousel, Card, Image } from "react-bootstrap";
+import './CarrSlider.css'
 
 const apiUrl = 'http://localhost:5005'
 
@@ -7,13 +8,11 @@ const CarrSlider = ({ gallery, title }) => {
 
 
     return (
-        <>
+        <div className="CardSlider">
             <Row>
                 <Col >
-                    <Card className=' d-block  ' style={{ marginBottom: '30px', marginTop: '20px', marginRight: '40px', marginLeft: '40px', boxShadow: '0 8px 6px rgba(0, 0, 0, 1)' }} >
+                    <Card className=' d-block CardSlider mb-5 mt-2 mr-4 ml-4 ' style={{ boxShadow: '0 8px 6px rgba(0, 0, 0, 1)' }} >
                         <Card.Body style={{ backgroundColor: '#F5F5DC', width: '100%' }}>
-
-
                             <Carousel>
                                 {gallery.map((image, index) => (
                                     <Carousel.Item key={index}>
@@ -24,14 +23,11 @@ const CarrSlider = ({ gallery, title }) => {
                                     </Carousel.Item>
                                 ))}
                             </Carousel>
-
-
-
                         </Card.Body>
                     </Card>
                 </Col>
             </Row>
-        </>
+        </div>
     );
 }
 
