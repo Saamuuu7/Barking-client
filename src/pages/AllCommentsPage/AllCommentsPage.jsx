@@ -2,7 +2,7 @@ import { Container, Card } from "react-bootstrap"
 import CommentCard from "../../components/CommentCard/CommentCard"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import CommentsList from "../../components/CommentsList/ListComments"
+import CommentsList from "../../components/CommentsList/CommentList"
 const apiUrl = 'http://localhost:5005'
 
 
