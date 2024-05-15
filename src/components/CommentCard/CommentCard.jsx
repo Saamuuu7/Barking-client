@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Card, Row, Col, } from "react-bootstrap"
 import CarrSlider from "../CarrSlider/CarrSlider"
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 const CommentCard = ({ barId, text, rating, image_url, posted_by }) => {
 
@@ -15,7 +15,7 @@ const CommentCard = ({ barId, text, rating, image_url, posted_by }) => {
 
     const getBarInfo = () => {
         axios
-            .get(`${apiUrl}/bars/${barId}`)
+            .get(`${API_URL}/bars/${barId}`)
             .then(({ data }) => setBarData(data))
             .catch((err) => console.log(err))
 
@@ -30,7 +30,7 @@ const CommentCard = ({ barId, text, rating, image_url, posted_by }) => {
             }}>
                 <Row className="text-center mt-3">
                     <Col>
-                        <Card.Text className="mb-5"><h3>Publicado por:<strong>  {posted_by}</strong></h3></Card.Text>
+                        <Card.Text className="mb-5">Publicado por:<strong>{posted_by}</strong></Card.Text>
                     </Col>
 
                     <Col>
@@ -38,7 +38,7 @@ const CommentCard = ({ barId, text, rating, image_url, posted_by }) => {
                     </Col>
                 </Row>
 
-                <Card.Subtitle className="mb-5">{text}</Card.Subtitle>
+                <Card.Text className="mb-5">{text}</Card.Text>
 
                 <Card.Text className="mt-2">{posted_by}  añadió las siguientes fotos de su experiencia: </Card.Text>
                 <CarrSlider gallery={image_url} title={barData.title} />

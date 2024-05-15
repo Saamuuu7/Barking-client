@@ -1,7 +1,7 @@
 import CommentCard from "../CommentCard/CommentCard"
 import { useEffect, useState } from "react"
 import axios from "axios"
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 const CommentsList = () => {
 
@@ -13,7 +13,7 @@ const CommentsList = () => {
 
     const getAllcomments = () => {
         axios
-            .get(`${apiUrl}/comments`)
+            .get(`${API_URL}/comments`)
             .then(({ data }) => setComments(data))
             .catch((err) => console.log(err))
     }

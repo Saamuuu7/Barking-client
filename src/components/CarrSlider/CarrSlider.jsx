@@ -1,7 +1,7 @@
 import { Col, Row, Carousel, Card, Image } from "react-bootstrap";
 import './CarrSlider.css'
 
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 
 const CarrSlider = ({ gallery, title }) => {

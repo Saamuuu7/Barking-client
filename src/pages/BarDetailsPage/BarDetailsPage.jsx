@@ -1,14 +1,11 @@
-import { Container, Button, Col, Row, Offcanvas, Spinner } from "react-bootstrap"
+import { Container, Button, Col, Row, Offcanvas, Spinner, Card } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import CarrSlider from "../../components/CarrSlider/CarrSlider"
-<<<<<<< HEAD
 import AddCommentForm from "../../components/AddCommentForm/AddCommentForm"
-=======
 import CommentCard from "../../components/CommentCard/CommentCard"
->>>>>>> c1af981785164dbdb0a9dba8ce42b1a26f30058d
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 const BarDetailsPage = ({ name, ...props }) => {
     const [bar, setBar] = useState({})
@@ -27,7 +24,7 @@ const BarDetailsPage = ({ name, ...props }) => {
 
     const getBarDetail = () => {
         axios
-            .get(`${apiUrl}/bars/${barId}?_embed=comments`)
+            .get(`${API_URL}/bars/${barId}?_embed=comments`)
             .then(({ data }) => {
                 setBar(data)
                 setGallery(data.gallery)
@@ -38,7 +35,7 @@ const BarDetailsPage = ({ name, ...props }) => {
 
     const handleDeleteElement = () => {
         axios
-            .delete(`${apiUrl}/bars/${barId}`)
+            .delete(`${API_URL}/bars/${barId}`)
             .then(({ data }) => {
                 setBar(data)
                 setGallery(data.gallery)
@@ -174,13 +171,11 @@ const BarDetailsPage = ({ name, ...props }) => {
                                         Estas Son Nuestras Reseñas
                                     </h4>
                                 </div>
-                                <Button className="w-100" variant="secondary" size="sm"
-                                    onClick={() => {
-                                        navigate(`/nuevo-comentario`);
-                                    }}>
-                                    Añade Tu Propia Reseña
-                                </Button>
+
+
                                 <Col>
+
+                                    <AddCommentForm title={bar.title} />
 
                                     {bar.comments.map(elm => (
                                         <CommentCard
@@ -199,7 +194,6 @@ const BarDetailsPage = ({ name, ...props }) => {
                             </Row>
                         </div >
 
-
                         <Button variant="secondary" onClick={handleShow} className="me-2 mt-5 w-100   ">
                             Aporta tu granito de Arena
                         </Button>
@@ -214,12 +208,6 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     edita en caso de ver algun fallo. Muchas Gracias
                                 </p>
 
-<<<<<<< HEAD
-
-                <AddCommentForm />
-
-            </Container>
-=======
                                 <Button className="mt-2 mb-5 w-100" variant="secondary" size="sm"
                                     onClick={() => {
                                         navigate(`/bar/editar-bar/${barId}`);
@@ -236,13 +224,13 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     onClick={handleDeleteElement}>
                                     Delete
                                 </Button>
+
                             </Offcanvas.Body>
 
                         </Offcanvas>
 
                     </Container >
             }
->>>>>>> c1af981785164dbdb0a9dba8ce42b1a26f30058d
         </>
     )
 }
