@@ -5,10 +5,13 @@ import { useNavigate, useParams } from "react-router-dom"
 
 const API_URL = import.meta.env.VITE_API_URL
 
-const AddCommentForm = ({ title }) => {
+const AddCommentForm = ({ title, getBarDetail }) => {
+
     const { barId } = useParams()
 
-    const [newComment, setNewComment] = useState({
+
+    const initialState = {
+
         barId: Number(barId),
         title: title,
         text: '',
@@ -16,7 +19,9 @@ const AddCommentForm = ({ title }) => {
         rating: 0,
         posted_by: '',
         image_url: ['']
-    });
+    }
+
+    const [newComment, setNewComment] = useState(initialState)
 
     const navigate = useNavigate();
 
@@ -53,8 +58,9 @@ const AddCommentForm = ({ title }) => {
 
         axios
             .post(`${API_URL}/comments`, newComment)
-            .then(() => navigate(`/bar/${barId}`))
+            .then(() => getBarDetail())
             .catch((err) => console.log(err))
+        setNewComment(initialState)
 
 
     }
@@ -168,8 +174,8 @@ const AddCommentForm = ({ title }) => {
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }} onClick={handleForSubmit}>
                     Guardar
                 </Button>
-                {/* 
-                <Button variant="secondary" type="button" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
+
+                {/* <Button variant="secondary" type="button" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
                     Cancelar Envio
                 </Button> */}
             </Form>

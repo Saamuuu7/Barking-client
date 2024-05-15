@@ -250,9 +250,7 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     </h4>
                                 </div>
 
-
-                                <AddCommentForm title={bar.title} />
-
+                                <AddCommentForm title={bar.title} getBarDetail={() => getBarDetail()} />
 
                                 <div className="text-center mb-4">
                                     <h4 className="mb-3 mt-5 pb-4" style={{
