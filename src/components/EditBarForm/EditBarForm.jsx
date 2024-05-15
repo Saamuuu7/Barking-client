@@ -90,7 +90,8 @@ const EditBarForm = () => {
     }
 
     const handleCancel = () => {
-        window.location.replace('');
+        // window.location.replace('');
+        navigate('/bars')
     }
 
     return (
@@ -146,6 +147,8 @@ const EditBarForm = () => {
                         type="number"
                         placeholder="Introduzca un número entre el 1 y el 5"
                         name="rating"
+                        min={1}
+                        max={5}
                         value={editBar.rating}
                         onChange={handleInputChange}
                         required

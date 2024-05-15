@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col, Card } from "react-bootstrap"
 import AddBarForm from "../../components/AddBarForm/AddBarForm"
 
 
@@ -13,13 +13,15 @@ const AddBarPage = () => {
                 <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 10)' }} />
 
                 <Row>
-                    <Col
-                        md={{ span: 6, offset: 3 }}
-                        style={{}}
-                        className="mt-5 mb-5"
-                    >
-                        <AddBarForm />
-                    </Col>
+                    <Card className='mb-3' style={{ backgroundColor: '#F5F5DC', boxShadow: '0 4px 6px rgba(0, 0, 0, 10)' }}>
+                        <Col
+                            md={{ span: 6, offset: 3 }}
+                            style={{}}
+                            className="mt-5 mb-5"
+                        >
+                            <AddBarForm />
+                        </Col>
+                    </Card>
                 </Row>
 
             </Container>

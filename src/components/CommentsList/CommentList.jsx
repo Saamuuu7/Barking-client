@@ -9,7 +9,6 @@ const CommentsList = () => {
 
     useEffect(() => {
         getAllcomments()
-        getBarInfo()
     }, [])
 
     const getAllcomments = () => {
@@ -17,13 +16,6 @@ const CommentsList = () => {
             .get(`${apiUrl}/comments`)
             .then(({ data }) => setComments(data))
             .catch((err) => console.log(err))
-    }
-    const getBarInfo = barId => {
-        axios
-            .get(`${apiUrl}/bars/${barId}`)
-            .then(({ data }) => setComments(data))
-            .catch((err) => console.log(err))
-
     }
 
     return (
