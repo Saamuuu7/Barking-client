@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import CarrSlider from "../../components/CarrSlider/CarrSlider"
+import AddCommentForm from "../../components/AddCommentForm/AddCommentForm"
 const apiUrl = 'http://localhost:5005'
 
 const BarDetailsPage = ({ name, ...props }) => {
@@ -114,6 +115,9 @@ const BarDetailsPage = ({ name, ...props }) => {
                     </Offcanvas.Body>
 
                 </Offcanvas>
+
+
+                <AddCommentForm />
 
             </Container>
         </>

@@ -12,10 +12,10 @@ const Navigation = () => {
                     <Link to='/' style={{ textDecoration: 'none' }}>
                         <Navbar.Brand>Barking</Navbar.Brand>
                     </Link>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ border: 'none' }} />
 
                     <Navbar.Collapse id="basic-navbar-nav" >
-                        <Nav className="me-auto">
+                        <Nav className="me-auto" >
 
                             <Link to='/bars' style={{ textDecoration: 'none' }}>
                                 <Nav.Link as='span'>Bares</Nav.Link>
