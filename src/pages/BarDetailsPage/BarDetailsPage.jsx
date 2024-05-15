@@ -172,8 +172,7 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     </h4>
                                 </div>
 
-
-                                <AddCommentForm />
+                                <AddCommentForm title={bar.title} getBarDetail={() => getBarDetail()} />
 
                                 <div className="text-center mb-4">
                                     <h4 className="mb-3 mt-5 pb-4" style={{
@@ -186,7 +185,6 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                                 <Col>
 
-                                    <AddCommentForm title={bar.title} />
 
                                     {bar.comments.map(elm => (
                                         <CommentCard

@@ -208,42 +208,6 @@ const AddBarForm = () => {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="phone_number">
-                    <Form.Label>Número de Contacto *</Form.Label>
-                    <InputGroup hasValidation>
-                        <InputGroup.Text>📞</InputGroup.Text>
-                        <Form.Control
-                            type='text'
-                            placeholder="Introduzca el teléfono de contacto"
-                            name="phone_number"
-                            value={newBar.contact.phone_number}
-                            onChange={handleContactChange}
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Por favor, complete este campo.
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="email">
-                    <Form.Label>Email de Contacto *</Form.Label>
-                    <InputGroup hasValidation>
-                        <InputGroup.Text>@</InputGroup.Text>
-                        <Form.Control
-                            type='text'
-                            placeholder="Introduzca el email de contacto"
-                            name="email"
-                            value={newBar.contact.email}
-                            onChange={handleContactChange}
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Por favor, complete este campo.
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                </Form.Group>
-
                 <Form.Group className="mb-3" controlId="capacity">
                     <Form.Label>Indica El Aforo Máximo</Form.Label>
                     <Form.Control
@@ -254,6 +218,54 @@ const AddBarForm = () => {
                         onChange={handleInputChange}
                     />
                 </Form.Group>
+
+                <Row style={{ marginBottom: '50px', marginTop: '50px' }}>
+                    <p className="text-center">Datos de la Dirección</p>
+                    <hr />
+
+                    <Col>
+                        <Form.Group className="mb-3" controlId="phone_number">
+                            <Form.Label>Número de Contacto *</Form.Label>
+                            <InputGroup hasValidation>
+                                <InputGroup.Text>📞</InputGroup.Text>
+                                <Form.Control
+                                    type='text'
+                                    placeholder="Introduzca el teléfono de contacto"
+                                    name="phone_number"
+                                    value={newBar.contact.phone_number}
+                                    onChange={handleContactChange}
+                                    required
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Por favor, complete este campo.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+                    </Col>
+
+                    <Col>
+                        <Form.Group className="mb-3" controlId="email">
+                            <Form.Label>Email de Contacto *</Form.Label>
+                            <InputGroup hasValidation>
+                                <InputGroup.Text>@</InputGroup.Text>
+                                <Form.Control
+                                    type='text'
+                                    placeholder="Introduzca el email de contacto"
+                                    name="email"
+                                    value={newBar.contact.email}
+                                    onChange={handleContactChange}
+                                    required
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Por favor, complete este campo.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+                    </Col>
+
+                </Row>
+
+
 
                 <Row style={{ marginBottom: '50px', marginTop: '50px' }}>
                     <p className="text-center">Datos de la Dirección</p>
