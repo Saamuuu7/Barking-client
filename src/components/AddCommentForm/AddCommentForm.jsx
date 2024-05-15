@@ -1,14 +1,17 @@
 import axios from "axios"
 import { useState } from "react"
 import { Form, Button, InputGroup, Container } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const API_URL = import.meta.env.VITE_API_URL
 
-const AddCommentForm = ({ barId }) => {
+const AddCommentForm = ({ title }) => {
+    const { barId } = useParams()
+
     const [newComment, setNewComment] = useState({
-        title: '',
-        comment: '',
+        barId: Number(barId),
+        title: title,
+        text: '',
         average_price: '',
         rating: 0,
         posted_by: '',
@@ -49,7 +52,7 @@ const AddCommentForm = ({ barId }) => {
 
         axios
             .post(`${API_URL}/comments`, newComment)
-            .then(() => navigate('/todos-los-comentarios'))
+            .then(() => navigate(`/bar/${barId}`))
             .catch((err) => console.log(err))
 
     }
@@ -65,15 +68,15 @@ const AddCommentForm = ({ barId }) => {
 
 
 
-                <Form.Group className="mb-10" controlId="comment">
+                <Form.Group className="mb-10" controlId="text">
                     <Form.Label>Comentario</Form.Label>
                     <InputGroup hasValidation>
 
                         <Form.Control
                             as="textarea"
                             placeholder="Introduzca su comentario"
-                            name="comment"
-                            value={newComment.comment}
+                            name="text"
+                            value={newComment.text}
                             onChange={handleCommentChange}
                             required
                         />
@@ -162,6 +165,9 @@ const AddCommentForm = ({ barId }) => {
                     Guardar
                 </Button>
 
+                <Button variant="secondary" type="button" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
+                    Cancelar Envio
+                </Button>
             </Form>
 
         </div>

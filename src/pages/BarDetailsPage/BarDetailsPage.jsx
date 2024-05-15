@@ -1,4 +1,4 @@
-import { Container, Button, Col, Row, Offcanvas, Spinner } from "react-bootstrap"
+import { Container, Button, Col, Row, Offcanvas, Spinner, Card } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
@@ -186,6 +186,8 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                                 <Col>
 
+                                    <AddCommentForm title={bar.title} />
+
                                     {bar.comments.map(elm => (
                                         <CommentCard
                                             barId={bar.id}
@@ -202,7 +204,6 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                             </Row>
                         </div >
-
 
                         <Button variant="secondary" onClick={handleShow} className="me-2 mt-5 w-100   ">
                             Aporta tu granito de Arena
@@ -234,6 +235,7 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     onClick={handleDeleteElement}>
                                     Delete
                                 </Button>
+
                             </Offcanvas.Body>
 
                         </Offcanvas>
