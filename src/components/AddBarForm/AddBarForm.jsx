@@ -149,6 +149,8 @@ const AddBarForm = () => {
                         type="number"
                         placeholder="Introduzca un número entre el 1 y el 5"
                         name="rating"
+                        min={1}
+                        max={5}
                         value={newBar.rating}
                         onChange={handleInputChange}
                         required
@@ -317,7 +319,11 @@ const AddBarForm = () => {
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                     Guardar
                 </Button>
-                <Button variant="secondary" type="cancel" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
+
+                <Button variant="secondary" type="cancel" className="w-100" style={{
+                    marginTop: '20px'
+                }}
+                    onClick={handleCancel}>
                     Cancelar Envio
                 </Button>
 

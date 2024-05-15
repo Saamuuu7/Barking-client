@@ -7,8 +7,6 @@ const EditCommentPage = () => {
         </Container>
     )
 
-
-
 }
 
 export default EditCommentPage
