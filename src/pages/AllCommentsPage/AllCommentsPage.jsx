@@ -25,8 +25,10 @@ const AllCommentsPage = () => {
         <div className="AllCommentsPage">
 
             <Container>
-                <h1 className="mt-5">Comentarios</h1>
-                <hr />
+                <h1 className="mt-3 text-center mt-4 ">Comentarios</h1>
+                <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 0px 6px rgba(0, 0, 0, 0)' }} />
+
+
                 <CommentsList />
             </Container>
         </div>

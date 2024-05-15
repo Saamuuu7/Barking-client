@@ -10,7 +10,7 @@ const AddCommentsPage = () => {
                     <div className="row justify-content-center w-100">
                         <div className="col-md-6">
                             <h1 className="text-center">Añada su comentario</h1>
-                            <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }} />
+                            <hr className="mx-auto d-block w-50" style={{ backgroundColor: 'none' }} />
                             <AddCommentForm />
                         </div>
                     </div>

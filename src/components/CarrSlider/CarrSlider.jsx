@@ -11,8 +11,8 @@ const CarrSlider = ({ gallery, title }) => {
         <div className="CardSlider">
             <Row>
                 <Col >
-                    <Card className=' d-block CardSlider mb-5 mt-0 mr-4 ml-4 ' style={{ boxShadow: '0 8px 6px rgba(0, 0, 0, 1)' }} >
-                        <Card.Body style={{ backgroundColor: '#F5F5DC', width: '100%' }}>
+                    <Card className=' d-block CardSlider mb-5 mt-0 mr-4 ml-4 ' style={{ border: 'none' }} >
+                        <Card.Body style={{ width: '100%' }}>
                             <Carousel>
                                 {gallery.map((image, index) => (
                                     <Carousel.Item key={index}>

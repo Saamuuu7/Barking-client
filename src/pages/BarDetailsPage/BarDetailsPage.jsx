@@ -65,7 +65,7 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     <CarrSlider className='Slider mt-2' gallery={gallery} title={bar.title} />
                                 </Col>
 
-                                <Col xs={12} sm={12} md={6} lg={6} className="pt-5">
+                                <Col xs={12} sm={12} md={6} lg={6} className="pt-1" >
                                     <div>
                                         <h4 className="mt-5 mb-4 px-3" style={{
                                             borderBottom: "2px solid black",
@@ -77,26 +77,104 @@ const BarDetailsPage = ({ name, ...props }) => {
                                             Capacidad para {bar.capacity} personas
                                         </p>
                                     </div>
+
+
+
+
+                                    <div >
+                                        <h4 className="mt-5 mb-4 px-3" style={{
+                                            borderBottom: "2px solid black",
+                                            paddingBottom: "5px"
+                                        }}>
+                                            Precio medio
+                                        </h4>
+                                    </div>
+
+                                    <p className="text-muted text-center">Oscila entre los : {bar.average_price}</p>
+
+
+
+
+
+                                    <div >
+                                        <h4 className="mt-5 mb-4 px-3" style={{
+                                            borderBottom: "2px solid black",
+                                            paddingBottom: "5px"
+                                        }}>
+                                            Horario de apertura
+                                        </h4>
+                                    </div>
+
+                                    <p className="text-muted text-center">{bar.opening_hours} h</p>
+
+
+
+
+                                    <div >
+                                        <h4 className="mt-5 mb-4 px-3" style={{
+                                            borderBottom: "2px solid black",
+                                            paddingBottom: "5px"
+                                        }}>
+                                            Accesibilidad
+                                        </h4>
+                                        {bar.handicapped ?
+                                            <p className="text-muted ">Lugar Habilitado para minusválidos ♿️</p>
+                                            :
+                                            <p lassName="text-muted ">No habilitado para minusválidos 🚫</p>}
+                                    </div>
+
+
+
+                                    <div >
+                                        <h4 className="mt-5 mb-4 px-3" style={{
+                                            borderBottom: "2px solid black",
+                                            paddingBottom: "5px"
+                                        }}>
+                                            Datos de contacto
+                                        </h4>
+                                        <p className="text-muted ">{bar.contact.email}</p>
+                                        <p className="text-muted ">{bar.contact.phone_number}</p>
+                                    </div>
+
+
+                                    <div >
+                                        <h4 className="mt-5 mb-4 px-3" style={{
+                                            borderBottom: "2px solid black",
+                                            paddingBottom: "5px"
+                                        }}>
+                                            Valoración
+                                        </h4>
+                                        <p className="text-muted ">{bar.rating} ⭐</p>
+
+                                    </div>
+
+
+
+
+
+
+
+
                                 </Col>
 
                                 <Row>
-                                    <Col>
+                                    {/* <Col> */}
 
-                                        <div className="text-center mb-4">
+                                    {/* <div className="text-center mb-4">
                                             <h4 className="mb-3 mt-5" style={{
                                                 borderBottom: "2px solid black",
                                                 display: "inline-block",
                                                 paddingBottom: "5px"
                                             }}>
-                                                Nuestro Precio Medio
+                                                Precio medio
                                             </h4>
                                         </div>
 
                                         <p className="text-muted text-center">Oscila entre los : {bar.average_price}</p>
 
-                                    </Col>
+                                    </Col> */}
 
-                                    <Col>
+                                    {/* <Col>
 
                                         <div className="text-center mb-4">
                                             <h4 className="mb-3 mt-5" style={{
@@ -104,14 +182,14 @@ const BarDetailsPage = ({ name, ...props }) => {
                                                 display: "inline-block",
                                                 paddingBottom: "5px"
                                             }}>
-                                                Horarios de Apertura
+                                                Horario de apertura
                                             </h4>
                                         </div>
 
                                         <p className="text-muted text-center">{bar.opening_hours} h</p>
-                                    </Col>
+                                    </Col> */}
 
-                                </Row>
+                                    {/* </Row>
 
                                 <Row>
                                     <Col>
@@ -128,36 +206,36 @@ const BarDetailsPage = ({ name, ...props }) => {
                                                 :
                                                 <p lassName="text-muted ">No habilitado para minusválidos 🚫</p>}
                                         </div>
-                                    </Col>
+                                    </Col> */}
 
-                                    <Col>
+                                    {/* <Col>
                                         <div className="text-center mt-4 pt-5 pb-5 mb-4">
                                             <h4 className='mb-4' style={{
                                                 borderBottom: "2px solid black",
                                                 display: "inline-block",
                                                 paddingBottom: "5px"
                                             }}>
-                                                Datos De contacto
+                                                Datos de contacto
                                             </h4>
                                             <p className="text-muted ">{bar.contact.email}</p>
                                             <p className="text-muted ">{bar.contact.phone_number}</p>
                                         </div>
-                                    </Col>
+                                    </Col> */}
 
-                                    <Col>
+                                    {/* <Col>
                                         <div className="text-center mt-4 pt-5 pb-5 mb-4">
                                             <h4 className='mb-4' style={{
                                                 borderBottom: "2px solid black",
                                                 display: "inline-block",
                                                 paddingBottom: "5px"
                                             }}>
-                                                Nuestra Valoración
+                                                Valoración
                                             </h4>
                                             <p className="text-muted ">{bar.rating} ⭐</p>
 
                                         </div>
 
-                                    </Col>
+                                    </Col> */}
                                 </Row>
 
                             </Row>
@@ -173,7 +251,8 @@ const BarDetailsPage = ({ name, ...props }) => {
                                 </div>
 
 
-                                <AddCommentForm />
+                                <AddCommentForm title={bar.title} />
+
 
                                 <div className="text-center mb-4">
                                     <h4 className="mb-3 mt-5 pb-4" style={{
@@ -186,7 +265,6 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                                 <Col>
 
-                                    <AddCommentForm title={bar.title} />
 
                                     {bar.comments.map(elm => (
                                         <CommentCard

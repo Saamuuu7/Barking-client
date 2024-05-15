@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { Form, Button, InputGroup, Container } from "react-bootstrap"
+import { Form, Button, InputGroup, Spinner } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -21,11 +21,12 @@ const AddCommentForm = ({ title }) => {
     const navigate = useNavigate();
 
 
+
     const handleCommentChange = event => {
         const { name, value } = event.target
         setNewComment({
             ...newComment,
-            [name]: value
+            [name]: value,
         });
     };
 
@@ -55,10 +56,13 @@ const AddCommentForm = ({ title }) => {
             .then(() => navigate(`/bar/${barId}`))
             .catch((err) => console.log(err))
 
+
     }
 
 
     return (
+
+
 
         <div className="AddCommentForm ">
 
@@ -164,10 +168,10 @@ const AddCommentForm = ({ title }) => {
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }} onClick={handleForSubmit}>
                     Guardar
                 </Button>
-
+                {/* 
                 <Button variant="secondary" type="button" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
                     Cancelar Envio
-                </Button>
+                </Button> */}
             </Form>
 
         </div>
