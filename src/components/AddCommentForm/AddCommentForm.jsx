@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Form, Button, InputGroup, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 const AddCommentForm = ({ barId }) => {
     const [newComment, setNewComment] = useState({
@@ -11,6 +11,7 @@ const AddCommentForm = ({ barId }) => {
         comment: '',
         average_price: '',
         rating: 0,
+        posted_by: '',
         image_url: ['']
     });
 
@@ -40,16 +41,14 @@ const AddCommentForm = ({ barId }) => {
         setNewComment({ ...newComment, image_url: image_urlCopy })
     }
 
-    const handleCancel = () => {
-        navigate('/todos-los-comentarios');
-    };
+
 
 
     const handleForSubmit = e => {
         e.preventDefault()
 
         axios
-            .post(`${apiUrl}/comments`, newComment)
+            .post(`${API_URL}/comments`, newComment)
             .then(() => navigate('/todos-los-comentarios'))
             .catch((err) => console.log(err))
 
@@ -139,14 +138,14 @@ const AddCommentForm = ({ barId }) => {
 
 
 
-                <Form.Group className="mb-4" controlId="comment">
+                <Form.Group className="mb-4" controlId="posted_by">
                     <Form.Label>Publicado por</Form.Label>
                     <InputGroup hasValidation>
 
                         <Form.Control
                             as="textarea"
                             placeholder="Introduzca su nombre"
-                            name="comment"
+                            name="posted_by"
                             value={newComment.posted_by}
                             onChange={handleCommentChange}
                             required
@@ -162,9 +161,7 @@ const AddCommentForm = ({ barId }) => {
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }} onClick={handleForSubmit}>
                     Guardar
                 </Button>
-                <Button variant="secondary" type="button" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
-                    Cancelar Envio
-                </Button>
+
             </Form>
 
         </div>

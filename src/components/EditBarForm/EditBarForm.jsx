@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Row, Col, Form, Button } from "react-bootstrap"
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 const EditBarForm = () => {
 
@@ -37,7 +37,7 @@ const EditBarForm = () => {
 
     const fetchFormData = () => {
         axios
-            .get(`${apiUrl}/bars/${barId}`)                      //get data
+            .get(`${API_URL}/bars/${barId}`)                      //get data
             .then(({ data }) => setEditBar(data))
             .catch((err) => console.log(err))
     }
@@ -53,7 +53,7 @@ const EditBarForm = () => {
         e.preventDefault()
 
         axios
-            .put(`${apiUrl}/bars/${barId}`, editBar)                 //put data
+            .put(`${API_URL}/bars/${barId}`, editBar)                 //put data
             .then(() => navigate(`/bar/${barId}`))
             .catch(err => console.log(err))
     }

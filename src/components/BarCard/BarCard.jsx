@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Col, Row, Card, Image } from "react-bootstrap";
 import CarrSlider from "./../CarrSlider/CarrSlider";
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 
 

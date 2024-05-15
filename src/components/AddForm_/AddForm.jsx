@@ -4,7 +4,7 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 
 const AddForm = () => {
@@ -65,7 +65,7 @@ const AddForm = () => {
         e.preventDefault()
 
         axios
-            .post(`${apiUrl}/bars`, newBar)
+            .post(`${API_URL}/bars`, newBar)
             .then(() => navigate('/bars'))
             .catch((err) => console.log(err))
 

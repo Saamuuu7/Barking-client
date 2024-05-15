@@ -3,12 +3,9 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import CarrSlider from "../../components/CarrSlider/CarrSlider"
-<<<<<<< HEAD
 import AddCommentForm from "../../components/AddCommentForm/AddCommentForm"
-=======
 import CommentCard from "../../components/CommentCard/CommentCard"
->>>>>>> c1af981785164dbdb0a9dba8ce42b1a26f30058d
-const apiUrl = 'http://localhost:5005'
+const API_URL = import.meta.env.VITE_API_URL
 
 const BarDetailsPage = ({ name, ...props }) => {
     const [bar, setBar] = useState({})
@@ -27,7 +24,7 @@ const BarDetailsPage = ({ name, ...props }) => {
 
     const getBarDetail = () => {
         axios
-            .get(`${apiUrl}/bars/${barId}?_embed=comments`)
+            .get(`${API_URL}/bars/${barId}?_embed=comments`)
             .then(({ data }) => {
                 setBar(data)
                 setGallery(data.gallery)
@@ -38,7 +35,7 @@ const BarDetailsPage = ({ name, ...props }) => {
 
     const handleDeleteElement = () => {
         axios
-            .delete(`${apiUrl}/bars/${barId}`)
+            .delete(`${API_URL}/bars/${barId}`)
             .then(({ data }) => {
                 setBar(data)
                 setGallery(data.gallery)
@@ -171,15 +168,22 @@ const BarDetailsPage = ({ name, ...props }) => {
                                         borderBottom: "2px solid black",
                                         paddingBottom: "5px"
                                     }}>
+                                        Añada su comentario
+                                    </h4>
+                                </div>
+
+
+                                <AddCommentForm />
+
+                                <div className="text-center mb-4">
+                                    <h4 className="mb-3 mt-5 pb-4" style={{
+                                        borderBottom: "2px solid black",
+                                        paddingBottom: "5px"
+                                    }}>
                                         Estas Son Nuestras Reseñas
                                     </h4>
                                 </div>
-                                <Button className="w-100" variant="secondary" size="sm"
-                                    onClick={() => {
-                                        navigate(`/nuevo-comentario`);
-                                    }}>
-                                    Añade Tu Propia Reseña
-                                </Button>
+
                                 <Col>
 
                                     {bar.comments.map(elm => (
@@ -214,12 +218,6 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     edita en caso de ver algun fallo. Muchas Gracias
                                 </p>
 
-<<<<<<< HEAD
-
-                <AddCommentForm />
-
-            </Container>
-=======
                                 <Button className="mt-2 mb-5 w-100" variant="secondary" size="sm"
                                     onClick={() => {
                                         navigate(`/bar/editar-bar/${barId}`);
@@ -242,7 +240,6 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                     </Container >
             }
->>>>>>> c1af981785164dbdb0a9dba8ce42b1a26f30058d
         </>
     )
 }
