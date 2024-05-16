@@ -1,8 +1,10 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form, Button, Row, Col, InputGroup } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
+import GooglePlacesAutocomplete from "react-google-places-autocomplete"
+import './AddBarForm.css'
 const API_URL = import.meta.env.VITE_API_URL
 
 
@@ -44,15 +46,6 @@ const AddBarForm = () => {
 
     }
 
-    const handleAdressChange = e => {
-        const { name, value } = e.target
-        setNewBar({
-            ...newBar, address: {
-                ...newBar.address, [name]: value
-            }
-        })
-    }
-
     const handleContactChange = e => {
         const { name, value } = e.target
         setNewBar({
@@ -60,16 +53,6 @@ const AddBarForm = () => {
                 ...newBar.contact, [name]: value
             }
         })
-    }
-
-    const handleForSubmit = e => {
-        e.preventDefault()
-
-        axios
-            .post(`${API_URL}/bars`, newBar)
-            .then(() => navigate('/bars'))
-            .catch((err) => console.log(err))
-
     }
 
     const addImageFild = () => {
@@ -87,6 +70,45 @@ const AddBarForm = () => {
         setNewBar({ ...newBar, gallery: galleryCopy })
     }
 
+    const [addressValue, setAddressValue] = useState()
+
+    useEffect(() => {
+        if (addressValue) {
+            handleAutocomplete();
+        }
+    }, [addressValue]);
+
+
+    const handleAutocomplete = () => {
+        if (addressValue && addressValue.label) {
+            geocodeByAddress(addressValue.label)
+                .then(([addressDetails]) => {
+                    setNewBar({
+                        ...newBar, address: {
+                            text: addressDetails.formatted_address,
+                            latitude: addressDetails.geometry.location.lat(),
+                            longitude: addressDetails.geometry.location.lng()
+                        }
+                    });
+                    return getLatLng(addressDetails);
+                })
+                .then((coordinates) => {
+                    console.log('LAS COORDENADAS', coordinates)
+                })
+                .catch(error => console.error(error))
+        }
+    }
+
+
+    const handleFormSubmit = e => {
+        e.preventDefault()
+
+        axios
+            .post(`${API_URL}/bars`, newBar)
+            .then(() => navigate('/bars'))
+            .catch((err) => console.log(err))
+
+    }
 
     const handleCancel = () => {
         setNewBar(initialState)
@@ -97,7 +119,7 @@ const AddBarForm = () => {
 
         <div className="AddBarForm">
 
-            <Form onSubmit={handleForSubmit} >
+            <Form onSubmit={handleFormSubmit} >
 
                 <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Nombre del Bar * </Form.Label>
@@ -133,8 +155,8 @@ const AddBarForm = () => {
                     <Form.Control
                         type="text"
                         placeholder="Entre 00€ - 00€"
-                        name="AveragePrice"
-                        value={newBar.address.average_price}
+                        name="average_price"
+                        value={newBar.average_price}
                         onChange={handleInputChange}
                         required
                     />
@@ -219,7 +241,27 @@ const AddBarForm = () => {
                     />
                 </Form.Group>
 
-                <Row style={{ marginBottom: '50px', marginTop: '50px' }}>
+
+
+                <Form.Group className="mb-3 " controlId="details">
+                    <Form.Label>Calle y Número * </Form.Label>
+                    <InputGroup hasValidation>
+                        <GooglePlacesAutocomplete
+                            selectProps={{
+                                addressValue,
+                                onChange: setAddressValue,
+                            }}
+                            apiKey="AIzaSyDsI3rFC_Y0nwuiKtPsRePgOe15jqZRja4"
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Por favor,rellene con la calle del Bar.
+                        </Form.Control.Feedback>
+                    </InputGroup>
+                </Form.Group>
+
+
+
+                <Row style={{ marginBottom: '30px', marginTop: '30px' }}>
                     <p className="text-center">Datos de la Dirección</p>
                     <hr />
 
@@ -267,66 +309,6 @@ const AddBarForm = () => {
 
 
 
-                <Row style={{ marginBottom: '50px', marginTop: '50px' }}>
-                    <p className="text-center">Datos de la Dirección</p>
-                    <hr />
-
-                    <Col >
-                        <Form.Group className="mb-3" controlId="details">
-                            <Form.Label>Detalles * </Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Calle"
-                                    name="text"
-                                    value={newBar.address.text}
-                                    onChange={handleAdressChange}
-                                    required
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Por favor,rellene con la calle del Bar.
-                                </Form.Control.Feedback>
-                            </InputGroup>
-                        </Form.Group>
-                    </Col>
-
-                    <Col>
-                        <Form.Group className="mb-3" controlId="latitude">
-                            <Form.Label>Latitud *</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Latitud"
-                                name="latitude"
-                                value={newBar.address.latitude}
-                                onChange={handleAdressChange}
-                                required
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Este campo es obligatorio.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-
-                    <Col>
-                        <Form.Group className="mb-3" controlId="longitude">
-                            <Form.Label>Longitud * </Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="Longuitud"
-                                    name="longitude"
-                                    value={newBar.address.longitude}
-                                    onChange={handleAdressChange}
-                                    required
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Este campo es obligatorio.
-                                </Form.Control.Feedback>
-                            </InputGroup>
-                        </Form.Group>
-                    </Col>
-
-                </Row>
 
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                     Guardar

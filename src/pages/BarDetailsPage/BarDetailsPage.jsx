@@ -5,9 +5,11 @@ import axios from "axios"
 import CarrSlider from "../../components/CarrSlider/CarrSlider"
 import AddCommentForm from "../../components/AddCommentForm/AddCommentForm"
 import CommentCard from "../../components/CommentCard/CommentCard"
+import BarMap from "./BarMap";
 const API_URL = import.meta.env.VITE_API_URL
 
 const BarDetailsPage = ({ name, ...props }) => {
+
     const [bar, setBar] = useState({})
 
     const [gallery, setGallery] = useState([])
@@ -49,10 +51,13 @@ const BarDetailsPage = ({ name, ...props }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+
     return (
         <>
             {
                 isLoading ? <Spinner animation="grow" /> :
+
                     <Container className="mb-5">
                         <div className="BarDetailsPage ">
                             <h1 className="mx-auto d-block w-100 pt-5 text-center">{bar.title}</h1>
@@ -122,6 +127,70 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                         <Row>
                             <Col md={{ span: 6 }}>
+                                <div >
+                                    <h4 className="mt-5 mb-4 px-3" style={{
+                                        borderBottom: "2px solid black",
+                                        paddingBottom: "5px"
+                                    }}>
+                                        Horario de apertura
+                                    </h4>
+                                </div>
+
+                                <p className="text-muted text-center">{bar.opening_hours} h</p>
+
+
+
+
+                                <div >
+                                    <h4 className="mt-5 mb-4 px-3" style={{
+                                        borderBottom: "2px solid black",
+                                        paddingBottom: "5px"
+                                    }}>
+                                        Accesibilidad
+                                    </h4>
+                                    {bar.handicapped ?
+                                        <p className="text-muted ">Lugar Habilitado para minusválidos ♿️</p>
+                                        :
+                                        <p lassName="text-muted ">No habilitado para minusválidos 🚫</p>}
+                                </div>
+
+
+
+                                <div >
+                                    <h4 className="mt-5 mb-4 px-3" style={{
+                                        borderBottom: "2px solid black",
+                                        paddingBottom: "5px"
+                                    }}>
+                                        Datos de contacto
+                                    </h4>
+                                    <p className="text-muted ">{bar.contact.email}</p>
+                                    <p className="text-muted ">{bar.contact.phone_number}</p>
+                                </div>
+
+
+                                <div >
+                                    <h4 className="mt-5 mb-4 px-3" style={{
+                                        borderBottom: "2px solid black",
+                                        paddingBottom: "5px"
+                                    }}>
+                                        Valoración
+                                    </h4>
+                                    <p className="text-muted ">{bar.rating} ⭐</p>
+
+                                </div>
+
+                            </Col>
+
+
+
+                        </Row>
+
+                        <BarMap address={bar.address} />
+
+
+
+                        <Row>
+                            <Col md={{ span: 6 }}>
                                 <div className="text-center mb-4">
                                     <h4 className="mb-3 mt-5 pb-4" style={{
                                         borderBottom: "2px solid black",
@@ -142,7 +211,7 @@ const BarDetailsPage = ({ name, ...props }) => {
                                         borderBottom: "2px solid black",
                                         paddingBottom: "5px"
                                     }}>
-                                        Comentarios recientes                                    </h4>
+                                        Comentarios recientes</h4>
                                 </div>
 
 
@@ -166,13 +235,6 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                             </Col>
                         </Row>
-
-
-
-
-
-
-
 
                         <Button variant="secondary" onClick={handleShow} className="me-2 mt-5 w-100   ">
                             Aporta tu granito de Arena
