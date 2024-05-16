@@ -1,15 +1,30 @@
 import { useState } from "react"
 import { Container, Navbar, Nav } from "react-bootstrap"
 import { Link } from "react-router-dom"
-
+import './Navbar.css'
 const Navigation = () => {
     const [expanded, setExpanded] = useState(false)
 
     return (
-        <div className="Navigation">
+        <div className="Navigation mb-5 pb-2">
 
-            <Navbar expand='' expanded={expanded} className="bg-body-tertiary" bg="transparent"  >
+            <Navbar expand='' expanded={expanded} className="bg-body-tertiary fixed-top "  >
                 <Container>
+                    <Link to='/' style={{ textDecoration: 'none' }}>
+
+                        <Navbar.Brand onClick={() => setExpanded(false)}>
+                            <img
+                                alt=''
+                                src='https://res.cloudinary.com/dmwybmzwx/image/upload/v1715876899/noun-bold-4613613_mwjj6l.png'
+                                height={30}
+                                className="d-inline-block align-top"
+
+
+                            ></img>
+
+                        </Navbar.Brand>
+                    </Link>
+
                     <Link to='/' style={{ textDecoration: 'none' }}>
                         <Navbar.Brand onClick={() => setExpanded(false)}>Barking</Navbar.Brand>
                     </Link>
@@ -18,7 +33,7 @@ const Navigation = () => {
                     <Navbar.Collapse id="basic-navbar-nav" >
                         <Nav className="me-auto" >
 
-                            <Link to='/bars' style={{ textDecoration: 'none' }} >
+                            <Link to='/bars' className='mt-5' style={{ textDecoration: 'none' }} >
                                 <Nav.Link as='span' onClick={() => setExpanded(false)} >Bares</Nav.Link>
                             </Link>
 

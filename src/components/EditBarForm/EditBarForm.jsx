@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Row, Col, Form, Button } from "react-bootstrap"
 import InputGroup from 'react-bootstrap/InputGroup';
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
+import GooglePlacesAutocomplete from "react-google-places-autocomplete"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -49,11 +51,41 @@ const EditBarForm = () => {
         setEditBar({ ...editBar, [name]: newValue });
     }
 
+    const [addressValue, setAddressValue] = useState()
+
+    useEffect(() => {
+        if (addressValue) {
+            handleAutocomplete();
+        }
+    }, [addressValue]);
+
+
+    const handleAutocomplete = () => {
+        if (addressValue && addressValue.label) {
+            geocodeByAddress(addressValue.label)
+                .then(([addressDetails]) => {
+                    setEditBar({
+                        ...editBar, address: {
+                            text: addressDetails.formatted_address,
+                            latitude: addressDetails.geometry.location.lat(),
+                            longitude: addressDetails.geometry.location.lng()
+                        }
+                    });
+                    return getLatLng(addressDetails);
+                })
+                .then((coordinates) => {
+                    console.log('LAS COORDENADAS', coordinates)
+                })
+                .catch(error => console.error(error))
+        }
+    }
+
+
     const handleFormSubmit = e => {
         e.preventDefault()
 
         axios
-            .put(`${API_URL}/bars/${barId}`, editBar)                 //put data
+            .put(`${API_URL}/bars/${barId}`, editBar)
             .then(() => navigate(`/bar/${barId}`))
             .catch(err => console.log(err))
     }
@@ -80,15 +112,6 @@ const EditBarForm = () => {
         })
     }
 
-    const handleAddressChange = e => {
-        const { name, value } = e.target
-        setEditBar({
-            ...editBar, address: {
-                ...editBar.address, [name]: value
-            }
-        })
-    }
-
     const handleCancel = () => {
         // window.location.replace('');
         navigate('/bars')
@@ -97,8 +120,9 @@ const EditBarForm = () => {
     return (
         <div className="EditBarForm mt-3">
             <Form onSubmit={handleFormSubmit} >
+
                 <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Nombre del Bar *</Form.Label>
+                    <Form.Label>Nombre del Bar * </Form.Label>
                     <InputGroup hasValidation>
                         <Form.Control
                             type='text'
@@ -109,7 +133,7 @@ const EditBarForm = () => {
                             required
                         />
                         <Form.Control.Feedback type="invalid">
-                            Por favor, rellene con el nombre del Bar que desea añadir.
+                            Por favor,rellene con el nombre del Bar que desea añadir.
                         </Form.Control.Feedback>
                     </InputGroup>
                 </Form.Group>
@@ -206,42 +230,6 @@ const EditBarForm = () => {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="phone_number">
-                    <Form.Label>Número de Contacto *</Form.Label>
-                    <InputGroup hasValidation>
-                        <InputGroup.Text>📞</InputGroup.Text>
-                        <Form.Control
-                            type='text'
-                            placeholder="Introduzca el teléfono de contacto"
-                            name="phone_number"
-                            value={editBar.contact.phone_number}
-                            onChange={handleContactChange}
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Por favor, complete este campo.
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="email">
-                    <Form.Label>Email de Contacto *</Form.Label>
-                    <InputGroup hasValidation>
-                        <InputGroup.Text>@</InputGroup.Text>
-                        <Form.Control
-                            type='text'
-                            placeholder="Introduzca el email de contacto"
-                            name="email"
-                            value={editBar.contact.email}
-                            onChange={handleContactChange}
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Por favor, complete este campo.
-                        </Form.Control.Feedback>
-                    </InputGroup>
-                </Form.Group>
-
                 <Form.Group className="mb-3" controlId="capacity">
                     <Form.Label>Indica El Aforo Máximo</Form.Label>
                     <Form.Control
@@ -253,60 +241,65 @@ const EditBarForm = () => {
                     />
                 </Form.Group>
 
-                <Row style={{ marginBottom: '50px', marginTop: '50px' }}>
+
+
+                <Form.Group className="mb-3 " controlId="details">
+                    <Form.Label>Calle y Número * </Form.Label>
+                    <InputGroup hasValidation>
+                        <GooglePlacesAutocomplete
+                            selectProps={{
+                                addressValue,
+                                onChange: setAddressValue,
+                            }}
+                            apiKey="AIzaSyDsI3rFC_Y0nwuiKtPsRePgOe15jqZRja4"
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Por favor,rellene con la calle del Bar.
+                        </Form.Control.Feedback>
+                    </InputGroup>
+                </Form.Group>
+
+
+
+                <Row style={{ marginBottom: '30px', marginTop: '30px' }}>
                     <p className="text-center">Datos de la Dirección</p>
                     <hr />
 
-                    <Col >
-                        <Form.Group className="mb-3" controlId="details">
-                            <Form.Label>Detalles * </Form.Label>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="phone_number">
+                            <Form.Label>Número de Contacto *</Form.Label>
                             <InputGroup hasValidation>
+                                <InputGroup.Text>📞</InputGroup.Text>
                                 <Form.Control
-                                    type="text"
-                                    placeholder="Calle"
-                                    name="text"
-                                    value={editBar.address.text}
-                                    onChange={handleAddressChange}
+                                    type='text'
+                                    placeholder="Introduzca el teléfono de contacto"
+                                    name="phone_number"
+                                    value={editBar.contact.phone_number}
+                                    onChange={handleContactChange}
                                     required
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Por favor,rellene con la calle del Bar.
+                                    Por favor, complete este campo.
                                 </Form.Control.Feedback>
                             </InputGroup>
                         </Form.Group>
                     </Col>
 
                     <Col>
-                        <Form.Group className="mb-3" controlId="latitude">
-                            <Form.Label>Latitud *</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Latitud"
-                                name="latitude"
-                                value={editBar.address.latitude}
-                                onChange={handleAddressChange}
-                                required
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Este campo es obligatorio.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-
-                    <Col>
-                        <Form.Group className="mb-3" controlId="longitude">
-                            <Form.Label>Longitud * </Form.Label>
+                        <Form.Group className="mb-3" controlId="email">
+                            <Form.Label>Email de Contacto *</Form.Label>
                             <InputGroup hasValidation>
+                                <InputGroup.Text>@</InputGroup.Text>
                                 <Form.Control
-                                    type="number"
-                                    placeholder="Longuitud"
-                                    name="longitude"
-                                    value={editBar.address.longitude}
-                                    onChange={handleAddressChange}
+                                    type='text'
+                                    placeholder="Introduzca el email de contacto"
+                                    name="email"
+                                    value={editBar.contact.email}
+                                    onChange={handleContactChange}
                                     required
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Este campo es obligatorio.
+                                    Por favor, complete este campo.
                                 </Form.Control.Feedback>
                             </InputGroup>
                         </Form.Group>
@@ -314,11 +307,18 @@ const EditBarForm = () => {
 
                 </Row>
 
+
+
+
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                     Guardar
                 </Button>
-                <Button variant="secondary" onClick={handleCancel} className="w-100" style={{ marginTop: '20px' }}>
-                    Cancelar Envío
+
+                <Button variant="secondary" type="cancel" className="w-100" style={{
+                    marginTop: '20px'
+                }}
+                    onClick={handleCancel}>
+                    Cancelar Envio
                 </Button>
 
             </Form>
