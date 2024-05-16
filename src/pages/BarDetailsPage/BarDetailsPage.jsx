@@ -124,67 +124,6 @@ const BarDetailsPage = ({ name, ...props }) => {
 
 
 
-
-                        <Row>
-                            <Col md={{ span: 6 }}>
-                                <div >
-                                    <h4 className="mt-5 mb-4 px-3" style={{
-                                        borderBottom: "2px solid black",
-                                        paddingBottom: "5px"
-                                    }}>
-                                        Horario de apertura
-                                    </h4>
-                                </div>
-
-                                <p className="text-muted text-center">{bar.opening_hours} h</p>
-
-
-
-
-                                <div >
-                                    <h4 className="mt-5 mb-4 px-3" style={{
-                                        borderBottom: "2px solid black",
-                                        paddingBottom: "5px"
-                                    }}>
-                                        Accesibilidad
-                                    </h4>
-                                    {bar.handicapped ?
-                                        <p className="text-muted ">Lugar Habilitado para minusválidos ♿️</p>
-                                        :
-                                        <p lassName="text-muted ">No habilitado para minusválidos 🚫</p>}
-                                </div>
-
-
-
-                                <div >
-                                    <h4 className="mt-5 mb-4 px-3" style={{
-                                        borderBottom: "2px solid black",
-                                        paddingBottom: "5px"
-                                    }}>
-                                        Datos de contacto
-                                    </h4>
-                                    <p className="text-muted ">{bar.contact.email}</p>
-                                    <p className="text-muted ">{bar.contact.phone_number}</p>
-                                </div>
-
-
-                                <div >
-                                    <h4 className="mt-5 mb-4 px-3" style={{
-                                        borderBottom: "2px solid black",
-                                        paddingBottom: "5px"
-                                    }}>
-                                        Valoración
-                                    </h4>
-                                    <p className="text-muted ">{bar.rating} ⭐</p>
-
-                                </div>
-
-                            </Col>
-
-
-
-                        </Row>
-
                         <BarMap address={bar.address} />
 
 
