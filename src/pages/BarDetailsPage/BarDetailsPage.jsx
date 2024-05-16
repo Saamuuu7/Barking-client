@@ -56,191 +56,72 @@ const BarDetailsPage = ({ name, ...props }) => {
                     <Container className="mb-5">
                         <div className="BarDetailsPage ">
                             <h1 className="mx-auto d-block w-100 pt-5 text-center">{bar.title}</h1>
+
                             <hr className="mx-auto d-block w-50 mb-5" style={{
-                                boxShadow: '0 4px 6px rgba(0, 0, 0, 10)'
+                                borderBottom: "2px  black",
+
                             }} />
-                            <Row>
 
-                                <Col xs={12} sm={12} md={6} lg={6}>
-                                    <CarrSlider className='Slider mt-2' gallery={gallery} title={bar.title} />
-                                </Col>
+                        </div>
 
-                                <Col xs={12} sm={12} md={6} lg={6} className="pt-1" >
-                                    <div>
-                                        <h4 className="mt-5 mb-4 px-3" style={{
-                                            borderBottom: "2px solid black",
-                                            paddingBottom: "5px"
-                                        }}>
-                                            Descripción
-                                        </h4>
-                                        <p className="text-muted">{bar.description} <br />
-                                            Capacidad para {bar.capacity} personas
-                                        </p>
-                                    </div>
+                        <Row>
+
+                            <Col xs={12} sm={12} md={6} lg={6}>
+                                <CarrSlider className='Slider mt-2' gallery={gallery} title={bar.title} />
+                            </Col>
 
 
+                            <Col xs={12} sm={12} md={6} lg={6} className="pt-1 mt-2 mb-3 px-3 " style={{ paddingBottom: "5px" }}>
+                                <div>
+
+                                    <p className="text-muted">{bar.description} <br />
+                                        Capacidad para {bar.capacity} personas
+                                    </p>
+                                </div>
+
+                                <hr />
 
 
-                                    <div >
-                                        <h4 className="mt-5 mb-4 px-3" style={{
-                                            borderBottom: "2px solid black",
-                                            paddingBottom: "5px"
-                                        }}>
-                                            Precio medio
-                                        </h4>
-                                    </div>
-
-                                    <p className="text-muted text-center">Oscila entre los : {bar.average_price}</p>
+                                <div className="d-flex flex-wrap">
+                                    Precio medio:<p className="text-muted mx-1">Oscila entre los {bar.average_price}</p>
+                                </div>
 
 
+                                <div className="d-flex flex-wrap">
+                                    Horario de apertura:
+                                    <p className="text-muted mx-1">{bar.opening_hours} h</p>
+                                </div>
 
 
-
-                                    <div >
-                                        <h4 className="mt-5 mb-4 px-3" style={{
-                                            borderBottom: "2px solid black",
-                                            paddingBottom: "5px"
-                                        }}>
-                                            Horario de apertura
-                                        </h4>
-                                    </div>
-
-                                    <p className="text-muted text-center">{bar.opening_hours} h</p>
+                                <div className="d-flex flex-wrap" >
+                                    Accesibilidad:  {bar.handicapped ?
+                                        <p className="text-muted mx-1">Lugar habilitado para minusválidos ♿️</p>
+                                        :
+                                        <p lassName="text-muted mx-1 ">No habilitado para minusválidos 🚫</p>}
+                                </div>
 
 
 
-
-                                    <div >
-                                        <h4 className="mt-5 mb-4 px-3" style={{
-                                            borderBottom: "2px solid black",
-                                            paddingBottom: "5px"
-                                        }}>
-                                            Accesibilidad
-                                        </h4>
-                                        {bar.handicapped ?
-                                            <p className="text-muted ">Lugar Habilitado para minusválidos ♿️</p>
-                                            :
-                                            <p lassName="text-muted ">No habilitado para minusválidos 🚫</p>}
-                                    </div>
+                                <div className="d-flex flex-wrap">
+                                    Datos de contacto:
+                                    <p className="text-muted mx-1 ">{bar.contact.email} / </p>
+                                    <p className="text-muted mx-1 ">{bar.contact.phone_number}</p>
+                                </div>
 
 
-
-                                    <div >
-                                        <h4 className="mt-5 mb-4 px-3" style={{
-                                            borderBottom: "2px solid black",
-                                            paddingBottom: "5px"
-                                        }}>
-                                            Datos de contacto
-                                        </h4>
-                                        <p className="text-muted ">{bar.contact.email}</p>
-                                        <p className="text-muted ">{bar.contact.phone_number}</p>
-                                    </div>
-
-
-                                    <div >
-                                        <h4 className="mt-5 mb-4 px-3" style={{
-                                            borderBottom: "2px solid black",
-                                            paddingBottom: "5px"
-                                        }}>
-                                            Valoración
-                                        </h4>
-                                        <p className="text-muted ">{bar.rating} ⭐</p>
-
-                                    </div>
+                                <div className="d-flex flex-wrap">
+                                    Valoración:
+                                    <p className="text-muted mx-1 ">{bar.rating} ⭐</p>
+                                </div>
+                            </Col>
+                        </Row>
 
 
 
 
 
-
-
-
-                                </Col>
-
-                                <Row>
-                                    {/* <Col> */}
-
-                                    {/* <div className="text-center mb-4">
-                                            <h4 className="mb-3 mt-5" style={{
-                                                borderBottom: "2px solid black",
-                                                display: "inline-block",
-                                                paddingBottom: "5px"
-                                            }}>
-                                                Precio medio
-                                            </h4>
-                                        </div>
-
-                                        <p className="text-muted text-center">Oscila entre los : {bar.average_price}</p>
-
-                                    </Col> */}
-
-                                    {/* <Col>
-
-                                        <div className="text-center mb-4">
-                                            <h4 className="mb-3 mt-5" style={{
-                                                borderBottom: "2px solid black",
-                                                display: "inline-block",
-                                                paddingBottom: "5px"
-                                            }}>
-                                                Horario de apertura
-                                            </h4>
-                                        </div>
-
-                                        <p className="text-muted text-center">{bar.opening_hours} h</p>
-                                    </Col> */}
-
-                                    {/* </Row>
-
-                                <Row>
-                                    <Col>
-                                        <div className="text-center mt-4 pt-5 pb-5">
-                                            <h4 className='mb-4' style={{
-                                                borderBottom: "2px solid black",
-                                                display: "inline-block",
-                                                paddingBottom: "5px"
-                                            }}>
-                                                Accesibilidad
-                                            </h4>
-                                            {bar.handicapped ?
-                                                <p className="text-muted ">Lugar Habilitado para minusválidos ♿️</p>
-                                                :
-                                                <p lassName="text-muted ">No habilitado para minusválidos 🚫</p>}
-                                        </div>
-                                    </Col> */}
-
-                                    {/* <Col>
-                                        <div className="text-center mt-4 pt-5 pb-5 mb-4">
-                                            <h4 className='mb-4' style={{
-                                                borderBottom: "2px solid black",
-                                                display: "inline-block",
-                                                paddingBottom: "5px"
-                                            }}>
-                                                Datos de contacto
-                                            </h4>
-                                            <p className="text-muted ">{bar.contact.email}</p>
-                                            <p className="text-muted ">{bar.contact.phone_number}</p>
-                                        </div>
-                                    </Col> */}
-
-                                    {/* <Col>
-                                        <div className="text-center mt-4 pt-5 pb-5 mb-4">
-                                            <h4 className='mb-4' style={{
-                                                borderBottom: "2px solid black",
-                                                display: "inline-block",
-                                                paddingBottom: "5px"
-                                            }}>
-                                                Valoración
-                                            </h4>
-                                            <p className="text-muted ">{bar.rating} ⭐</p>
-
-                                        </div>
-
-                                    </Col> */}
-                                </Row>
-
-                            </Row>
-
-                            <Row>
+                        <Row>
+                            <Col md={{ span: 6 }}>
                                 <div className="text-center mb-4">
                                     <h4 className="mb-3 mt-5 pb-4" style={{
                                         borderBottom: "2px solid black",
@@ -252,34 +133,46 @@ const BarDetailsPage = ({ name, ...props }) => {
 
                                 <AddCommentForm title={bar.title} getBarDetail={() => getBarDetail()} />
 
+                            </Col>
+                            <br></br>
+
+                            <Col md={{ offset: 1, span: 5 }}>
                                 <div className="text-center mb-4">
                                     <h4 className="mb-3 mt-5 pb-4" style={{
                                         borderBottom: "2px solid black",
                                         paddingBottom: "5px"
                                     }}>
-                                        Estas Son Nuestras Reseñas
-                                    </h4>
+                                        Comentarios recientes                                    </h4>
                                 </div>
 
-                                <Col>
 
 
-                                    {bar.comments.map(elm => (
-                                        <CommentCard
-                                            barId={bar.id}
-                                            key={elm.id}
-                                            id={elm.id}
-                                            text={elm.text}
-                                            rating={elm.rating}
-                                            image_url={elm.image_url}
-                                            posted_by={elm.posted_by}
-                                        />
-                                    ))}
 
-                                </Col>
 
-                            </Row>
-                        </div >
+
+
+                                {bar.comments.map(elm => (
+                                    <CommentCard
+                                        barId={bar.id}
+                                        key={elm.id}
+                                        id={elm.id}
+                                        text={elm.text}
+                                        rating={elm.rating}
+                                        image_url={elm.image_url}
+                                        posted_by={elm.posted_by}
+                                    />
+                                ))}
+
+
+                            </Col>
+                        </Row>
+
+
+
+
+
+
+
 
                         <Button variant="secondary" onClick={handleShow} className="me-2 mt-5 w-100   ">
                             Aporta tu granito de Arena

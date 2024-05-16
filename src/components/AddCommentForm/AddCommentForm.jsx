@@ -127,23 +127,23 @@ const AddCommentForm = ({ title, getBarDetail }) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="image_url">
-                    <Form.Label>Añadir fotos</Form.Label>
+                    <Form.Label>Añadir foto</Form.Label>
                     {
                         newComment.image_url.map((eachField, idx) => (
                             <Form.Control
                                 key={idx}
                                 className="mt-2"
                                 type="url"
-                                placeholder="Introduzca fotos del bar"
+                                placeholder="Introduzca foto del bar"
                                 value={eachField}
                                 onChange={e => handleGalleryChange(e, idx)}
                             />
                         ))}
 
 
-                    <Button className="w-100" variant="secondary" onClick={addImageFild}>
+                    {/* <Button className="w-100" variant="secondary" onClick={addImageFild}>
                         Añadir nueva foto
-                    </Button>
+                    </Button> */}
 
 
                 </Form.Group>
@@ -175,9 +175,6 @@ const AddCommentForm = ({ title, getBarDetail }) => {
                     Guardar
                 </Button>
 
-                {/* <Button variant="secondary" type="button" className="w-100" style={{ marginTop: '20px' }} onClick={handleCancel}>
-                    Cancelar Envio
-                </Button> */}
             </Form>
 
         </div>
