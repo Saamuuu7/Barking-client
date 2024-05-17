@@ -4,6 +4,7 @@ import AddCommentForm from '../../components/AddCommentForm/AddCommentForm';
 
 const AddCommentsPage = () => {
     return (
+
         <div className="AddCommentPage mt-0">
             <Container>
                 <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
@@ -17,6 +18,7 @@ const AddCommentsPage = () => {
                 </div>
             </Container>
         </div>
+
     );
 };
 

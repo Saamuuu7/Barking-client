@@ -5,12 +5,13 @@ const AllBarsPage = () => {
 
     return (
         <div className="AllBarsPage">
+
             <Container>
                 <h1 className="text-center mt-4 ">Listado de bares</h1>
                 <hr className="mx-auto d-block w-50" style={{ boxShadow: '0 0px 6px rgba(0, 0, 0, 0)' }} />
-
                 <BarsList />
             </Container>
+
         </div>
     );
 

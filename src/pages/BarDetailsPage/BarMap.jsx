@@ -18,8 +18,6 @@ const BarMap = ({ address }) => {
         setMap(null)
     }
 
-
-
     return (
 
         <div className="BarMap">

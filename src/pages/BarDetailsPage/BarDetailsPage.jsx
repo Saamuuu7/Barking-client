@@ -121,12 +121,7 @@ const BarDetailsPage = ({ name, ...props }) => {
                             </Col>
                         </Row>
 
-
-
-
                         <BarMap address={bar.address} />
-
-
 
                         <Row>
                             <Col md={{ span: 6 }}>
@@ -142,7 +137,6 @@ const BarDetailsPage = ({ name, ...props }) => {
                                 <AddCommentForm title={bar.title} getBarDetail={() => getBarDetail()} />
 
                             </Col>
-                            <br></br>
 
                             <Col md={{ offset: 1, span: 5 }}>
                                 <div className="text-center mb-4">
@@ -152,12 +146,6 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     }}>
                                         Comentarios recientes</h4>
                                 </div>
-
-
-
-
-
-
 
                                 {bar.comments.map(elm => (
                                     <CommentCard
@@ -170,14 +158,14 @@ const BarDetailsPage = ({ name, ...props }) => {
                                         posted_by={elm.posted_by}
                                     />
                                 ))}
-
-
                             </Col>
+
                         </Row>
 
                         <Button variant="secondary" onClick={handleShow} className="me-2 mt-5 w-100   ">
                             Aporta tu granito de Arena
                         </Button>
+
                         <Offcanvas show={show} onHide={handleClose} {...props}>
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title>Ayudanos a Mejorar la Experiencia</Offcanvas.Title>
@@ -196,7 +184,6 @@ const BarDetailsPage = ({ name, ...props }) => {
                                     Editar
                                 </Button>
 
-                                <br />
                                 <p>
                                     ¿Crees que este Bar sobra en la Página de Barking? ¡¡Elimínalo!!
                                 </p>

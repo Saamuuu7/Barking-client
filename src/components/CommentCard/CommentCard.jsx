@@ -23,9 +23,7 @@ const CommentCard = ({ barId, text, rating, posted_by, image_url }) => {
             .catch((err) => console.log(err))
     }
 
-
     return (
-
 
         isLoading
             ?

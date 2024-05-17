@@ -29,6 +29,7 @@ const EditBarForm = () => {
         },
         capacity: 0
     })
+    const [isLoading, setIsLoading] = useState(true)
 
     const { barId } = useParams()
     const navigate = useNavigate()
@@ -40,9 +41,16 @@ const EditBarForm = () => {
     const fetchFormData = () => {
         axios
             .get(`${API_URL}/bars/${barId}`)                      //get data
-            .then(({ data }) => setEditBar(data))
+            .then(({ data }) => {
+                setEditBar(data)
+                // console.log(data)
+                // const direction = data.address.text
+                // setAddressValue(direction)
+                setIsLoading(false)
+            })
             .catch((err) => console.log(err))
     }
+
 
 
     const handleInputChange = e => {
@@ -75,6 +83,8 @@ const EditBarForm = () => {
                 })
                 .then((coordinates) => {
                     console.log('LAS COORDENADAS', coordinates)
+
+
                 })
                 .catch(error => console.error(error))
         }
@@ -88,6 +98,8 @@ const EditBarForm = () => {
             .put(`${API_URL}/bars/${barId}`, editBar)
             .then(() => navigate(`/bar/${barId}`))
             .catch(err => console.log(err))
+
+
     }
 
     const addImageField = () => {
@@ -118,6 +130,7 @@ const EditBarForm = () => {
     }
 
     return (
+
         <div className="EditBarForm mt-3">
             <Form onSubmit={handleFormSubmit} >
 
@@ -241,25 +254,24 @@ const EditBarForm = () => {
                     />
                 </Form.Group>
 
-
-
                 <Form.Group className="mb-3 " controlId="details">
-                    <Form.Label>Calle y Número * </Form.Label>
+                    <Form.Label>Nueva calle y número * </Form.Label>
                     <InputGroup hasValidation>
                         <GooglePlacesAutocomplete
+                            // onLoadFailed={() => alert('CAGADA')}
                             selectProps={{
                                 addressValue,
-                                onChange: setAddressValue,
+                                onChange: setAddressValue
+
                             }}
                             apiKey="AIzaSyDsI3rFC_Y0nwuiKtPsRePgOe15jqZRja4"
                         />
+                        <Form.Text className="text-muted">Dirección actual: {editBar.address.text}</Form.Text>
                         <Form.Control.Feedback type="invalid">
-                            Por favor,rellene con la calle del Bar.
+                            Por favor, rellene con la calle del Bar.
                         </Form.Control.Feedback>
                     </InputGroup>
                 </Form.Group>
-
-
 
                 <Row style={{ marginBottom: '30px', marginTop: '30px' }}>
                     <p className="text-center">Datos de la Dirección</p>
@@ -308,8 +320,6 @@ const EditBarForm = () => {
                 </Row>
 
 
-
-
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                     Guardar
                 </Button>
@@ -322,6 +332,7 @@ const EditBarForm = () => {
                 </Button>
 
             </Form>
+
         </div >
 
     )

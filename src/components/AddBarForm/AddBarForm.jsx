@@ -31,7 +31,6 @@ const AddBarForm = () => {
     }
 
     const [newBar, setNewBar] = useState(initialState)
-
     const navigate = useNavigate()
 
     const handleInputChange = e => {
@@ -67,10 +66,11 @@ const AddBarForm = () => {
         const galleryCopy = [...newBar.gallery]
         galleryCopy[index] = value
 
-        setNewBar({ ...newBar, gallery: galleryCopy })
+        setNewBar({ ...newBar, gallery: gallerxyCopy })
     }
 
     const [addressValue, setAddressValue] = useState()
+    console.log(addressValue)
 
     useEffect(() => {
         if (addressValue) {
@@ -241,8 +241,6 @@ const AddBarForm = () => {
                     />
                 </Form.Group>
 
-
-
                 <Form.Group className="mb-3 " controlId="details">
                     <Form.Label>Calle y Número * </Form.Label>
                     <InputGroup hasValidation>
@@ -258,8 +256,6 @@ const AddBarForm = () => {
                         </Form.Control.Feedback>
                     </InputGroup>
                 </Form.Group>
-
-
 
                 <Row style={{ marginBottom: '30px', marginTop: '30px' }}>
                     <p className="text-center">Datos de la Dirección</p>
@@ -307,9 +303,6 @@ const AddBarForm = () => {
 
                 </Row>
 
-
-
-
                 <Button variant="dark" type="submit" className="w-100" style={{ marginTop: '20px' }}>
                     Guardar
                 </Button>
@@ -327,6 +320,5 @@ const AddBarForm = () => {
 
     )
 }
-
 
 export default AddBarForm
