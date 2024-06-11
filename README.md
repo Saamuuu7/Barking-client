@@ -1,11 +1,12 @@
-# React + Vite
+# Barking
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Barking es una página web diseñada para que todos los usuarios puedan registrar sus bares favoritos y dejar comentarios sobre los bares almacenados en la base de datos, así como sobre aquellos bares que se añadan posteriormente.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Registro de Bares**: Los usuarios pueden añadir sus bares favoritos a la base de datos de Barking.
+- **Comentarios**: Los usuarios pueden dejar comentarios sobre los bares ya almacenados y también sobre los nuevos bares que se vayan añadiendo.
+- **Base de Datos Dinámica**: La base de datos de Barking se actualiza constantemente con las aportaciones de los usuarios.
 
 
 |   HTTP VERB   |     PATH        | Request Body |                 Action              |
